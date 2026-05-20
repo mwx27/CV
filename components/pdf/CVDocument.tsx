@@ -23,6 +23,7 @@ function ensureFontsRegistered(origin: string) {
 const ACCENT = "#E50914";
 const MUTED = "#6B6B6B";
 const DIVIDER = "#E6E6E6";
+const AI = "#2563EB";
 
 const s = StyleSheet.create({
   page: {
@@ -67,12 +68,17 @@ const s = StyleSheet.create({
   bulletRow: { flexDirection: "row", marginTop: 1 },
   bulletDot: { width: 8, marginLeft: 4, fontSize: 8.5 },
   bulletText: { flex: 1, fontSize: 8.5 },
-  subRole: { marginTop: 4 },
+  subRole: { marginTop: 4, paddingTop: 4, borderTopWidth: 0.5, borderTopColor: "#d4d4d4" },
   subRoleHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
   subRoleCompany: { fontSize: 9.5, fontWeight: 600 },
-  subRolePeriod: { fontSize: 8.5, color: MUTED, marginLeft: 4 },
+  subRolePeriod: { fontSize: 8.5, color: MUTED, marginTop: 1 },
   techStack: { marginTop: 3, fontSize: 7.5, color: MUTED },
   techStackLabel: { fontWeight: 700 },
+  subTechStack: { marginTop: 1, fontSize: 7.5, color: MUTED },
+  aiRow: { marginTop: 1, fontSize: 7.5, color: AI, flexDirection: "row", alignItems: "center" },
+  aiRowLabel: { fontSize: 7.5, color: AI, marginLeft: 3, fontWeight: 700 },
+  aiRowText: { fontSize: 7.5, color: AI },
+  statusRow: { marginTop: 3, fontSize: 7.5, color: MUTED },
   skillRow: { marginTop: 2 },
   skillLabel: { fontSize: 9, fontWeight: 700 },
   skillValue: { fontSize: 9 },
@@ -87,6 +93,16 @@ const s = StyleSheet.create({
     lineHeight: 1.3,
   },
 });
+
+function ChipIcon({ size = 9 }: { size?: number }) {
+  return (
+    <Svg viewBox="0 0 24 24" width={size} height={size}>
+      <Rect x="4" y="4" width="16" height="16" rx="2" stroke={AI} strokeWidth="2" fill="none" />
+      <Rect x="9" y="9" width="6" height="6" stroke={AI} strokeWidth="2" fill="none" />
+      <Path d="M15 2v2 M15 20v2 M2 15h2 M2 9h2 M20 15h2 M20 9h2 M9 2v2 M9 20v2" stroke={AI} strokeWidth="2" fill="none" />
+    </Svg>
+  );
+}
 
 function Bullet({ text }: { text: string }) {
   return (
@@ -136,16 +152,33 @@ function PdfContactIcon({ name, size = 9 }: { name: ContactIcon; size?: number }
   }
 }
 
-function SubRoleView({ sub }: { sub: CVSubRole }) {
+function SubRoleView({ sub, techStackLabel, statusLabel, aiToolLabel }: { sub: CVSubRole; techStackLabel: string; statusLabel: string; aiToolLabel: string }) {
   return (
     <View style={s.subRole}>
       <View style={s.subRoleHeader}>
         <View style={{ flex: 1 }}>
-          <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-            <Text style={s.subRoleCompany}>{sub.company}</Text>
-            <Text style={s.subRolePeriod}>{sub.period}</Text>
-          </View>
+          <Text style={s.subRoleCompany}>{sub.company}</Text>
+          <Text style={s.subRolePeriod}>{[sub.period, ...(sub.details ?? [])].join(" • ")}</Text>
           {sub.bullets.map((b, i) => <Bullet key={i} text={b} />)}
+          {sub.status && (
+            <Text style={s.statusRow}>
+              <Text style={s.techStackLabel}>{statusLabel} </Text>
+              {sub.status}
+            </Text>
+          )}
+          {sub.techStack && (
+            <Text style={s.subTechStack}>
+              <Text style={s.techStackLabel}>{techStackLabel} </Text>
+              {sub.techStack}
+            </Text>
+          )}
+          {sub.aiTool && (
+            <View style={s.aiRow}>
+              <ChipIcon size={8} />
+              <Text style={s.aiRowLabel}>{aiToolLabel} </Text>
+              <Text style={s.aiRowText}>{sub.aiTool}</Text>
+            </View>
+          )}
         </View>
         {sub.logo && <Image src={sub.logo} style={s.logo} />}
       </View>
@@ -156,10 +189,14 @@ function SubRoleView({ sub }: { sub: CVSubRole }) {
 function RoleView({
   role,
   techStackLabel,
+  statusLabel,
+  aiToolLabel,
   isLast,
 }: {
   role: CVRole;
   techStackLabel: string;
+  statusLabel: string;
+  aiToolLabel: string;
   isLast?: boolean;
 }) {
   return (
@@ -175,11 +212,11 @@ function RoleView({
           {role.company && <Text style={s.company}>{role.company}</Text>}
           {role.bullets?.map((b, i) => <Bullet key={i} text={b} />)}
         </View>
-        {role.logo && !role.subRoles && (
+        {role.logo && (
           <Image src={role.logo} style={role.logoSize === "lg" ? s.logoLg : s.logo} />
         )}
       </View>
-      {role.subRoles?.map((sr) => <SubRoleView key={sr.company} sub={sr} />)}
+      {role.subRoles?.map((sr) => <SubRoleView key={sr.company} sub={sr} techStackLabel={techStackLabel} statusLabel={statusLabel} aiToolLabel={aiToolLabel} />)}
       {role.techStack && (
         <Text style={s.techStack}>
           <Text style={s.techStackLabel}>{techStackLabel} </Text>
@@ -232,22 +269,43 @@ export function CVDocument({ data, origin }: { data: CVData; origin: string }) {
           ))}
         </View>
 
+        <Text style={s.sectionTitle}>{data.sections.aiItExperience}</Text>
+        {data.aiItExperience.map((r, i) => (
+          <RoleView
+            key={i}
+            role={resolveLogos(r, origin)}
+            techStackLabel={data.labels.techStack}
+            statusLabel={data.labels.status}
+            aiToolLabel={data.labels.aiTool}
+            isLast={i === data.aiItExperience.length - 1}
+          />
+        ))}
+
+      </Page>
+
+      <Page size="A4" style={s.page}>
         <Text style={s.sectionTitle}>{data.sections.itExperience}</Text>
         {data.itExperience.map((r, i) => (
           <RoleView
             key={i}
             role={resolveLogos(r, origin)}
             techStackLabel={data.labels.techStack}
+            statusLabel={data.labels.status}
+            aiToolLabel={data.labels.aiTool}
             isLast={i === data.itExperience.length - 1}
           />
         ))}
+      </Page>
 
+      <Page size="A4" style={s.page}>
         <Text style={s.sectionTitle}>{data.sections.engineeringExperience}</Text>
         {data.engineeringExperience.map((r, i) => (
           <RoleView
             key={i}
             role={resolveLogos(r, origin)}
             techStackLabel={data.labels.techStack}
+            statusLabel={data.labels.status}
+            aiToolLabel={data.labels.aiTool}
             isLast={i === data.engineeringExperience.length - 1}
           />
         ))}

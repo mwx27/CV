@@ -33,17 +33,24 @@ export default async function CVPage({
       <Header data={data} />
       <ContactBar data={data} />
 
+      <SectionTitle>{data.sections.aiItExperience}</SectionTitle>
+      <section>
+        {data.aiItExperience.map((role, i) => (
+          <ExperienceEntry key={i} role={role} techStackLabel={data.labels.techStack} statusLabel={data.labels.status} aiToolLabel={data.labels.aiTool} />
+        ))}
+      </section>
+
       <SectionTitle>{data.sections.itExperience}</SectionTitle>
       <section>
         {data.itExperience.map((role, i) => (
-          <ExperienceEntry key={i} role={role} techStackLabel={data.labels.techStack} />
+          <ExperienceEntry key={i} role={role} techStackLabel={data.labels.techStack} statusLabel={data.labels.status} aiToolLabel={data.labels.aiTool} />
         ))}
       </section>
 
       <SectionTitle>{data.sections.engineeringExperience}</SectionTitle>
       <section>
         {data.engineeringExperience.map((role, i) => (
-          <ExperienceEntry key={i} role={role} techStackLabel={data.labels.techStack} />
+          <ExperienceEntry key={i} role={role} techStackLabel={data.labels.techStack} statusLabel={data.labels.status} aiToolLabel={data.labels.aiTool} />
         ))}
       </section>
 

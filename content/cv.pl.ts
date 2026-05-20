@@ -17,7 +17,8 @@ export const cvPl: CVData = {
     { label: "linkedin.com/in/maciej-wojda", href: "https://linkedin.com/in/maciej-wojda", icon: "linkedin" },
   ],
   sections: {
-    itExperience: "Doświadczenie IT",
+    aiItExperience: "Doświadczenie IT wspierane AI",
+    itExperience: "Wcześniejsze doświadczenie IT",
     engineeringExperience: "Doświadczenie inżynierskie",
     education: "Wykształcenie",
     skills: "Umiejętności",
@@ -25,6 +26,8 @@ export const cvPl: CVData = {
   },
   labels: {
     techStack: "Tech stack:",
+    status: "Status:",
+    aiTool: "Narzędzie AI:",
     skillsTechStack: "Tech stack:",
     skillsLegacy: "Używane dawno temu:",
     skillsOther: "Inne umiejętności i wiedza:",
@@ -33,6 +36,93 @@ export const cvPl: CVData = {
     downloadPdf: "Pobierz PDF",
     others: "Inne",
   },
+  aiItExperience: [
+    {
+      title: "Mobile app engineer",
+      company: "Software house Xfaang",
+      logo: "/logos/xfaang.png",
+      period: "09.2025 – obecnie",
+      employmentType: "pełny etat",
+      subRoles: [
+        {
+          company: "Aplikacja telekomunikacyjna, iOS (pivot)",
+          logo: "/logos/nda.png",
+          period: "04.2026",
+          details: ["produkt wewnętrzny Xfaang", "iOS"],
+          bullets: [
+            "Przejęcie wczesnego prototypu i doprowadzenie aplikacji do wersji beta",
+            "Autonomia w decyzjach produktowych i architektonicznych, w ramach ogólnych wytycznych biznesowych",
+            "Wprowadzenie architektury MVVM-lite z @Observable ViewModelami i DI opartym na protokołach",
+            "Uwierzytelnienie: krótkożyjące JWT w Keychainie, rotacja refresh tokenów, actor-isolated API client z deduplikacją odświeżania",
+            "Utworzenie infrastruktury testowej: Swift Testing, in-memory SwiftData, izolowane mocki per serwis",
+          ],
+          techStack: "Swift, SwiftUI, Swift Concurrency, SwiftData, Swift Testing, Keychain, MVVM",
+          aiTool: "Claude Code",
+          status: "dostępna w TestFlight (beta)",
+        },
+        {
+          company: "Aplikacja telekomunikacyjna, iOS",
+          logo: "/logos/nda.png",
+          period: "03.2026",
+          details: ["produkt wewnętrzny Xfaang", "iOS"],
+          bullets: [
+            "Przejęcie odpowiedzialności nad repozytorium, dalszy rozwój produktu",
+            "Szczegóły produktu objęte NDA",
+          ],
+          techStack: "SwiftUI, Swift, WebSocket, MVVM, integracja AI w czasie rzeczywistym, Localizable.xcstrings",
+          aiTool: "Claude Code",
+          status: "core ukończony — pivot do podobnej aplikacji",
+        },
+        {
+          company: "TasteRay (personalizowane rekomendacje filmów/seriali)",
+          logo: "/logos/tasteray.png",
+          period: "11.2025 – obecnie",
+          details: ["oddelegowanie z Xfaang", "produkt publiczny", "Android, iOS"],
+          bullets: [
+            "Wspólny chat layer (Ask Ray + elicytacja): własny transport AI SDK v6, streaming, postęp toolów",
+            "Wkład cross-repo: mobile (RN), backend (Next.js + CF Workers) i funnele (React Router 7)",
+            "Migracja uwierzytelnienia platformy: header → cookie (web) i Bearer JWT (mobile), ~12 grup endpointów",
+            "Most RN↔WebView dla funnela onboardingowego: Clerk-ticket handoff, cookies przez redirecty",
+            "Trwały cache TanStack Query w AsyncStorage (7 dni); telemetria PostHog ~80 eventów spójna z webem",
+            "Dev-menu: preset prev/prod (API+Clerk), custom API URL, health-checki, przyciski demo error handling",
+          ],
+          techStack:
+            "Expo, React Native, TypeScript, NativeWind, TanStack, Clerk, react-native-webview, Sentry, PostHog, AI SDK",
+          aiTool: "Claude Code",
+          status: "w rozwoju",
+        },
+        {
+          company: "ReCloth (wirtualna szafa z asystentem AI) ",
+          logo: "/logos/recloth.png",
+          period: "10.2025",
+          details: ["produkt wewnętrzny Xfaang", "Android"],
+          bullets: [
+            "Pipeline analizy ubrań Gemini Vision: schemat JSON, odpowiedź w języku użytkownika (PL/EN)",
+            "Preprocessing zdjęć: korekta orientacji EXIF i dwuetapowa kompresja (5–8 MB → 200–500 KB)",
+            "Repozytorium uwierzytelniania (synchroniczne i reaktywne Flow) — bez mignięcia UI na starcie",
+            "Integracja z OLX: OAuth z token lifecycle w Firestore, mapowanie AI→oferty, dwuetapowa publikacja",
+            "Globalny exception handler z Crashlytics i dialog błędu w osobnym procesie (przetrwa crash)",
+          ],
+          techStack: "Kotlin, Jetpack Compose, Coroutines/Flow, Hilt, Retrofit, Firebase (Firestore + Auth + Crashlytics), Gemini Vision API",
+          aiTool: "Cursor",
+          status: "ukończona — prezentacja wewnętrzna, bez publikacji",
+        },
+        {
+          company: "Aplikacja telekomunikacyjna, Android",
+          logo: "/logos/nda.png",
+          period: "09.2025",
+          details: ["produkt wewnętrzny Xfaang", "Android"],
+          bullets: [
+            "Odtworzenie od zera istniejącej aplikacji iOS na Androida — przełożenie UX, ekranów i wzorców SwiftUI w stylu typowym dla Jetpack Compose / Material 3",
+            "Szczegóły produktu objęte NDA",
+          ],
+          techStack: "Kotlin, Jetpack Compose, Material 3, Hilt, Room, Retrofit + OkHttp",
+          aiTool: "Cursor",
+          status: "ukończona — prezentacja wewnętrzna, bez publikacji",
+        },
+      ],
+    },
+  ],
   itExperience: [
     {
       title: "Software engineer",
@@ -65,7 +155,8 @@ export const cvPl: CVData = {
         {
           company: "SpartaDEX",
           logo: "/logos/spartadex.png",
-          period: "08.2023 – 12.2024, pełny etat",
+          period: "08.2023 – 12.2024",
+          details: ["pełny etat"],
           bullets: [
             "Odpowiedzialność za wszystkie aplikacje FE: gamified DEX, launchpad, landing page i inne",
             "Implementacja zmian strategicznych: agregator DEX, multi-chain, bridge, migracja płynności…",

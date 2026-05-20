@@ -17,7 +17,8 @@ export const cvEn: CVData = {
     { label: "linkedin.com/in/maciej-wojda", href: "https://linkedin.com/in/maciej-wojda", icon: "linkedin" },
   ],
   sections: {
-    itExperience: "IT Experience",
+    aiItExperience: "AI-assisted IT experience",
+    itExperience: "Earlier IT experience",
     engineeringExperience: "Engineering Experience",
     education: "Education",
     skills: "Skills Summary",
@@ -25,6 +26,8 @@ export const cvEn: CVData = {
   },
   labels: {
     techStack: "Tech stack:",
+    status: "Status:",
+    aiTool: "AI tool:",
     skillsTechStack: "Tech stack:",
     skillsLegacy: "Used long time ago:",
     skillsOther: "Other dev skills & knowledge:",
@@ -33,6 +36,93 @@ export const cvEn: CVData = {
     downloadPdf: "Download PDF",
     others: "Others",
   },
+  aiItExperience: [
+    {
+      title: "Mobile app engineer",
+      company: "Xfaang software house",
+      logo: "/logos/xfaang.png",
+      period: "09.2025 – present",
+      employmentType: "full time",
+      subRoles: [
+        {
+          company: "Telecom app, iOS (pivot)",
+          logo: "/logos/nda.png",
+          period: "04.2026",
+          details: ["in-house Xfaang product", "iOS"],
+          bullets: [
+            "Took over an early prototype and brought the app to beta",
+            "Owned all product and architectural decisions, working within high-level business guidelines",
+            "Introduced an MVVM-lite architecture with @Observable ViewModels and protocol-based DI",
+            "Designed authentication based on: short-lived JWTs in Keychain, refresh token rotation, and an actor-isolated API client with deduplicated refresh",
+            "Bootstrapped the testing infrastructure: Swift Testing, in-memory SwiftData, isolated mocks per service",
+          ],
+          techStack: "Swift, SwiftUI, Swift Concurrency, SwiftData, Swift Testing, Keychain, MVVM",
+          aiTool: "Claude Code",
+          status: "Available on TestFlight (beta)",
+        },
+        {
+          company: "Telecom app, iOS",
+          logo: "/logos/nda.png",
+          period: "03.2026",
+          details: ["in-house Xfaang product", "iOS"],
+          bullets: [
+            "Took over responsibility for the codebase and continued product development",
+            "Product details under NDA",
+          ],
+          techStack: "SwiftUI, Swift, WebSocket, MVVM, real-time AI integration, Localizable.xcstrings",
+          aiTool: "Claude Code",
+          status: "Core delivered — pivoted to a similar app",
+        },
+        {
+          company: "TasteRay (personalized movie/TV recommendations)",
+          logo: "/logos/tasteray.png",
+          period: "11.2025 – present",
+          details: ["delegated from Xfaang", "public product", "Android, iOS"],
+          bullets: [
+            "Shared chat layer (Ask Ray + elicitation): custom AI SDK v6 transport, streaming, tool progress",
+            "Cross-repo work: mobile (RN), backend (Next.js + CF Workers) and funnels (React Router 7)",
+            "Platform auth migration: header → cookie (web) and Bearer JWT (mobile), ~12 endpoint groups",
+            "RN↔WebView bridge for onboarding funnel: Clerk-ticket handoff, cookies persisted across redirects",
+            "Persistent TanStack Query cache in AsyncStorage (7d); PostHog ~80 events synced with web",
+            "Dev-menu: prev/prod preset (API+Clerk), custom API URL, health checks, error-handling demo buttons",
+          ],
+          techStack:
+            "Expo, React Native, TypeScript, NativeWind, TanStack, Clerk, react-native-webview, Sentry, PostHog, AI SDK",
+          aiTool: "Claude Code",
+          status: "In development",
+        },
+        {
+          company: "ReCloth (virtual wardrobe with AI assistant)",
+          logo: "/logos/recloth.png",
+          period: "10.2025",
+          details: ["in-house Xfaang product", "Android"],
+          bullets: [
+            "Clothing analysis pipeline with Gemini Vision: JSON schema, response in user's language (PL/EN)",
+            "Image preprocessing: EXIF orientation fix and two-stage compression (5–8 MB → 200–500 KB)",
+            "Auth repository (synchronous and reactive Flow) — no UI flash on launch",
+            "OLX integration: OAuth with token lifecycle in Firestore, AI→listing mapping, two-stage publishing",
+            "Global exception handler with Crashlytics and error dialog in isolated process (survives crash)",
+          ],
+          techStack: "Kotlin, Jetpack Compose, Coroutines/Flow, Hilt, Retrofit, Firebase (Firestore + Auth + Crashlytics), Gemini Vision API",
+          aiTool: "Cursor",
+          status: "Completed — internal demo, never released",
+        },
+        {
+          company: "Telecom app, Android",
+          logo: "/logos/nda.png",
+          period: "09.2025",
+          details: ["in-house Xfaang product", "Android"],
+          bullets: [
+            "Recreated an existing iOS app on Android from scratch — translating UX, screens and SwiftUI patterns into the style typical of Jetpack Compose / Material 3",
+            "Product details under NDA",
+          ],
+          techStack: "Kotlin, Jetpack Compose, Material 3, Hilt, Room, Retrofit + OkHttp",
+          aiTool: "Cursor",
+          status: "Completed — internal demo, never released",
+        },
+      ],
+    },
+  ],
   itExperience: [
     {
       title: "Software engineer",
@@ -65,7 +155,8 @@ export const cvEn: CVData = {
         {
           company: "SpartaDEX",
           logo: "/logos/spartadex.png",
-          period: "08.2023 – 12.2024, full time",
+          period: "08.2023 – 12.2024",
+          details: ["full time"],
           bullets: [
             "Owned all FE apps including: gamified DEX, launchpad, landing page, and others",
             "Implementation of strategic changes, i.e. dex aggregator, multi-chain support, bridge, liquidity migration…",

@@ -12,7 +12,11 @@ export interface CVSubRole {
   company: string;
   logo?: string;
   period: string;
+  details?: string[];
   bullets: string[];
+  techStack?: string;
+  aiTool?: string;
+  status?: string;
 }
 
 export interface CVRole {
@@ -54,6 +58,7 @@ export interface CVData {
   photo: string;
   contact: CVLink[];
   sections: {
+    aiItExperience: string;
     itExperience: string;
     engineeringExperience: string;
     education: string;
@@ -62,6 +67,8 @@ export interface CVData {
   };
   labels: {
     techStack: string;
+    status: string;
+    aiTool: string;
     skillsTechStack: string;
     skillsLegacy: string;
     skillsOther: string;
@@ -70,6 +77,7 @@ export interface CVData {
     downloadPdf: string;
     others: string;
   };
+  aiItExperience: CVRole[];
   itExperience: CVRole[];
   engineeringExperience: CVRole[];
   education: CVEducationEntry[];

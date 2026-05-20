@@ -6,6 +6,7 @@
   --accent: #e50914;
   --muted: #6b6b6b;
   --divider: #e6e6e6;
+  --ai: #2563eb;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-divider: var(--divider);
+  --color-ai: var(--ai);
   --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
   --font-display: var(--font-display), system-ui, -apple-system, sans-serif;
 }

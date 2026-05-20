@@ -41,22 +41,48 @@ function BulletList({ bullets }: { bullets: string[] }) {
   );
 }
 
-function SubRoleBlock({ sub }: { sub: CVSubRole }) {
+function ChipIcon({ className }: { className?: string }) {
   return (
-    <div className="mt-3 flex items-start justify-between gap-3">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <path d="M15 2v2 M15 20v2 M2 15h2 M2 9h2 M20 15h2 M20 9h2 M9 2v2 M9 20v2" />
+    </svg>
+  );
+}
+
+function SubRoleBlock({ sub, techStackLabel, statusLabel, aiToolLabel }: { sub: CVSubRole; techStackLabel: string; statusLabel: string; aiToolLabel: string }) {
+  return (
+    <div className="mt-3 pt-3 border-t border-[#d4d4d4] flex items-start justify-between gap-3">
       <div className="flex-1">
-        <div>
-          <span className="text-[15px] font-semibold">{sub.company}</span>{" "}
-          <MetaText>{sub.period}</MetaText>
-        </div>
+        <div className="text-[15px] font-semibold">{sub.company}</div>
+        <MetaText className="block">{[sub.period, ...(sub.details ?? [])].join(" • ")}</MetaText>
         <BulletList bullets={sub.bullets} />
+        {sub.status && (
+          <p className="mt-1 text-[11px] sm:text-xs text-muted">
+            <span className="font-semibold">{statusLabel}</span> {sub.status}
+          </p>
+        )}
+        {sub.techStack && (
+          <p className="mt-0.5 text-[11px] sm:text-xs text-muted">
+            <span className="font-semibold">{techStackLabel}</span> {sub.techStack}
+          </p>
+        )}
+        {sub.aiTool && (
+          <p className="mt-0.5 flex items-center gap-1.5 text-[11px] sm:text-xs text-[#2563eb]">
+            <ChipIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            <span>
+              <span className="font-semibold">{aiToolLabel}</span> {sub.aiTool}
+            </span>
+          </p>
+        )}
       </div>
       {sub.logo && <CompanyLogo src={sub.logo} alt={sub.company} />}
     </div>
   );
 }
 
-export function ExperienceEntry({ role, techStackLabel }: { role: CVRole; techStackLabel: string }) {
+export function ExperienceEntry({ role, techStackLabel, statusLabel, aiToolLabel }: { role: CVRole; techStackLabel: string; statusLabel: string; aiToolLabel: string }) {
   return (
     <EntryCard>
       <div className="flex items-start justify-between gap-3">
@@ -73,15 +99,15 @@ export function ExperienceEntry({ role, techStackLabel }: { role: CVRole; techSt
           )}
           {role.bullets && <BulletList bullets={role.bullets} />}
         </div>
-        {role.logo && !role.subRoles && (
+        {role.logo && (
           <CompanyLogo src={role.logo} alt={role.company ?? role.title} size={role.logoSize} />
         )}
       </div>
 
-      {role.subRoles?.map((s) => <SubRoleBlock key={s.company} sub={s} />)}
+      {role.subRoles?.map((s) => <SubRoleBlock key={s.company} sub={s} techStackLabel={techStackLabel} statusLabel={statusLabel} aiToolLabel={aiToolLabel} />)}
 
       {role.techStack && (
-        <p className="mt-3 text-xs sm:text-sm text-muted">
+        <p className="mt-3 text-[11px] sm:text-xs text-muted">
           <span className="font-semibold">{techStackLabel}</span> {role.techStack}
         </p>
       )}
