@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private CV construction notes (per-project inventories of bullet candidates,
+# senior/baseline categorization, internal evaluations) — kept local only
+/content/data-inventories/
