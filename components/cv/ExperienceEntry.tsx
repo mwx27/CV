@@ -55,8 +55,12 @@ function SubRoleBlock({ sub, techStackLabel, statusLabel, aiToolLabel }: { sub: 
   return (
     <div className="mt-3 pt-3 border-t border-[#d4d4d4] flex items-start justify-between gap-3">
       <div className="flex-1">
-        <div className="text-[15px] font-semibold">{sub.company}</div>
-        <MetaText className="block">{[sub.period, ...(sub.details ?? [])].join(" • ")}</MetaText>
+        <div className="text-[15px] font-semibold leading-tight">
+          {sub.company} <MetaText>({sub.period})</MetaText>
+        </div>
+        {sub.details && sub.details.length > 0 && (
+          <MetaText className="block">{sub.details.join(" • ")}</MetaText>
+        )}
         <BulletList bullets={sub.bullets} />
         {sub.status && (
           <p className="mt-1 text-[11px] sm:text-xs text-muted">

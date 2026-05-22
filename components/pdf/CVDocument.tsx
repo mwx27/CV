@@ -157,8 +157,13 @@ function SubRoleView({ sub, techStackLabel, statusLabel, aiToolLabel }: { sub: C
     <View style={s.subRole}>
       <View style={s.subRoleHeader}>
         <View style={{ flex: 1 }}>
-          <Text style={s.subRoleCompany}>{sub.company}</Text>
-          <Text style={s.subRolePeriod}>{[sub.period, ...(sub.details ?? [])].join(" • ")}</Text>
+          <Text>
+            <Text style={s.subRoleCompany}>{sub.company} </Text>
+            <Text style={s.subRolePeriod}>({sub.period})</Text>
+          </Text>
+          {sub.details && sub.details.length > 0 && (
+            <Text style={s.subRolePeriod}>{sub.details.join(" • ")}</Text>
+          )}
           {sub.bullets.map((b, i) => <Bullet key={i} text={b} />)}
           {sub.status && (
             <Text style={s.statusRow}>

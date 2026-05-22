@@ -56,7 +56,7 @@ export const cvPl: CVData = {
             "Uwierzytelnienie: krótkożyjące JWT w Keychainie, rotacja refresh tokenów, actor-isolated API client z deduplikacją odświeżania",
             "Utworzenie infrastruktury testowej: Swift Testing, in-memory SwiftData, izolowane mocki per serwis",
           ],
-          techStack: "Swift, SwiftUI, Swift Concurrency, SwiftData, Swift Testing, Keychain, MVVM",
+          techStack: "Swift + SwiftUI, Swift Concurrency, SwiftData, Swift Testing, Keychain, MVVM",
           aiTool: "Claude Code",
           status: "dostępna w TestFlight (beta)",
         },
@@ -69,7 +69,7 @@ export const cvPl: CVData = {
             "Przejęcie odpowiedzialności nad repozytorium, dalszy rozwój produktu",
             "Szczegóły produktu objęte NDA",
           ],
-          techStack: "SwiftUI, Swift, WebSocket, MVVM, integracja AI w czasie rzeczywistym, Localizable.xcstrings",
+          techStack: "Swift + SwiftUI, WebSocket, MVVM, integracja AI w czasie rzeczywistym, Localizable.xcstrings",
           aiTool: "Claude Code",
           status: "core ukończony — pivot do podobnej aplikacji",
         },
@@ -87,7 +87,7 @@ export const cvPl: CVData = {
             "Dev-menu: preset prev/prod (API+Clerk), custom API URL, health-checki, przyciski demo error handling",
           ],
           techStack:
-            "Expo, React Native, TypeScript, NativeWind, TanStack, Clerk, react-native-webview, Sentry, PostHog, AI SDK",
+            "React Native + Expo, TypeScript, NativeWind, TanStack, Clerk, react-native-webview, Sentry, PostHog, AI SDK",
           aiTool: "Claude Code",
           status: "w rozwoju",
         },
@@ -103,7 +103,7 @@ export const cvPl: CVData = {
             "Integracja z OLX: OAuth z token lifecycle w Firestore, mapowanie AI→oferty, dwuetapowa publikacja",
             "Globalny exception handler z Crashlytics i dialog błędu w osobnym procesie (przetrwa crash)",
           ],
-          techStack: "Kotlin, Jetpack Compose, Coroutines/Flow, Hilt, Retrofit, Firebase (Firestore + Auth + Crashlytics), Gemini Vision API",
+          techStack: "Kotlin + Jetpack Compose, Coroutines/Flow, Hilt, Retrofit, Firebase (Firestore + Auth + Crashlytics), Gemini Vision API",
           aiTool: "Cursor",
           status: "ukończona — prezentacja wewnętrzna, bez publikacji",
         },
@@ -116,7 +116,7 @@ export const cvPl: CVData = {
             "Odtworzenie od zera istniejącej aplikacji iOS na Androida — przełożenie UX, ekranów i wzorców SwiftUI w stylu typowym dla Jetpack Compose / Material 3",
             "Szczegóły produktu objęte NDA",
           ],
-          techStack: "Kotlin, Jetpack Compose, Material 3, Hilt, Room, Retrofit + OkHttp",
+          techStack: "Kotlin + Jetpack Compose, Material 3, Hilt, Room, Retrofit + OkHttp",
           aiTool: "Cursor",
           status: "ukończona — prezentacja wewnętrzna, bez publikacji",
         },
@@ -131,9 +131,13 @@ export const cvPl: CVData = {
       period: "12.2024 – 11.2025",
       employmentType: "część etatu",
       bullets: [
-        "Modernizacja 4-letniego legacy code (aplikacja do inwestowania w kryptowaluty, nieruchomości, akcje)",
+        "Doprowadzenie projektu zamrożonego na ponad rok do stanu bliskiego produkcyjnego",
+        "Scalenie porzuconej wersji oryginalnej i pivotu, migracja z Expo SDK 46/51 przez 52,53 do 54, naprawa breaking changes, patchowanie paczek npm, internal release: APK + TestFlight, aktualizacje OTA",
+        "Współtworzenie backendu Strapi od strony FE — wymiana mocków: crypto / RE / watchlist / portfolio",
+        "Przepisanie uwierzytelnienia: rejestracja, KYC, auto-login, biometria, reset Redux po wylogowaniu",
+        "Przełącznik API dev/prod ukryty za feature flag'ą",
       ],
-      techStack: "React Native, TypeScript, ExpoGo, Redux",
+      techStack: "React Native + Expo, TypeScript, Redux Toolkit + redux-persist, Sentry, Strapi (BE)",
     },
     {
       title: "Software engineer",
@@ -146,7 +150,7 @@ export const cvPl: CVData = {
         "Dalszy rozwój aplikacji, analityka danych",
         "Burze mózgów nad UI, UX i funkcjonalnościami",
       ],
-      techStack: "React Native, TypeScript, ExpoGo, FireBase, Sentry, Node.JS, SQLite",
+      techStack: "React Native + Expo, TypeScript, FireBase, Sentry, Node.JS, SQLite",
     },
     {
       title: "Frontend web3 engineer",
@@ -191,7 +195,7 @@ export const cvPl: CVData = {
         },
       ],
       techStack:
-        "Next.JS, Vite, ReactJS, TypeScript, JavaScript, WAGMI, Ethers, React Query, Jotai, Docker, NestJS, Radix UI, Tailwind CSS, Styled Components, SASS/SCSS",
+        "React + Next.js, Vite, TypeScript, JavaScript, WAGMI, Ethers, React Query, Jotai, Docker, NestJS, Radix UI, Tailwind CSS, Styled Components, SASS/SCSS",
     },
     {
       title: "Software engineer",
@@ -203,7 +207,7 @@ export const cvPl: CVData = {
         "Pluginy Assembly Analyzer dla oprogramowania CAD (komunikacja przez REST API z aplikacją webową)",
         "Inne pluginy do oprogramowania Autodesk dla firm zewnętrznych",
       ],
-      techStack: "JavaScript, Node.JS, VB.Net, VBA, Batch Script, Google Cloud, AWS, Windows Server",
+      techStack: "JavaScript + Node.JS, VB.Net, VBA, Batch Script, Google Cloud, AWS, Windows Server",
     },
     {
       title: "Frontend/fullstack developer, inne startupy",
@@ -223,7 +227,7 @@ export const cvPl: CVData = {
           ],
         },
       ],
-      techStack: "JavaScript, TypeScript, Node.JS, Express.js, PostgreSQL, React.JS, Ant Design, SASS/SCSS",
+      techStack: "JavaScript, TypeScript, Node.JS + Express.js, PostgreSQL, React + Ant Design, SASS/SCSS",
     },
     {
       title: "Inne zlecenia freelance IT",
@@ -304,7 +308,7 @@ export const cvPl: CVData = {
   },
   skills: {
     techStack:
-      "NextJS, Vite, React JS, JavaScript, TypeScript, Redux, Tailwind CSS, Styled Components, SASS/SCSS, React Native, Expo Go, FireBase, ReactQuery, Jotai, Express, NestJS, Axios, Node.js, Ethers, WAGMI, GraphQL, PostgreSQL, MySQL, SQLite, MongoDB, VBA, VB.NET, C#, Python, PHP, AWS, Google Cloud, NewRelic, Docker, CI/CD.",
+      "React + Next.js, Vite, JavaScript, TypeScript, Redux, Tailwind CSS, Styled Components, SASS/SCSS, React Native + Expo Go, FireBase, React Query, Jotai, Node.js, Express, NestJS, Axios, Ethers, WAGMI, GraphQL, PostgreSQL, MySQL, SQLite, MongoDB, VBA, VB.NET, C#, Python, PHP, AWS, Google Cloud, NewRelic, Docker, CI/CD.",
     legacy: "C, C++, Java, Free Pascal",
     other: "Algorytmy, struktury danych, kryptografia, cierpliwość i wytrwałość w mierzeniu się z problemami i zawiłym legacy code",
     soft: "Odpowiedzialność, komunikacja, empatia, priorytetyzacja zadań, myślenie analityczne, szybka adaptacja do zmieniających się warunków",
