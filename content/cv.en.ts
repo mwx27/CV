@@ -125,7 +125,7 @@ export const cvEn: CVData = {
   ],
   itExperience: [
     {
-      title: "Software engineer",
+      title: "Mobile app engineer",
       company: "Nexus (mobile app for Android/iOS)",
       logo: "/logos/nexus.png",
       period: "12.2024 – 11.2025",
@@ -140,17 +140,18 @@ export const cvEn: CVData = {
       techStack: "React Native + Expo, TypeScript, Redux Toolkit + redux-persist, Sentry, Strapi (BE)",
     },
     {
-      title: "Software engineer",
+      title: "Mobile app engineer",
       company: "Empatify (mobile app for Android/iOS)",
       logo: "/logos/empatify.png",
-      period: "06.2023 – present",
+      period: "06.2023 – 07.2025",
       employmentType: "part time",
       bullets: [
-        "Introducing brand new code standards — big refactor of whole app's heavy legacy code",
-        "Further app development, data analytics",
-        "Brainstorming about UI, UX, functionalities",
+        "Architecture refactor from flat root to `src/` (components, hooks, types, styles), `shared/` extracted from duplicates, design-system centralization",
+        "Profile/Settings: account screen, deletion modal, notifications switch with Firestore consent",
+        "Discover: three sections (Education, Exercises, Tools), categorized feelings and needs lists",
+        "Journal: compass/conflict/training context unified via `SessionSimplified` type, entry deletion with confirmation",
       ],
-      techStack: "React Native + Expo, TypeScript, FireBase, Sentry, Node.JS, SQLite",
+      techStack: "React Native + Expo, TypeScript, expo-router, Recoil + recoil-persist, Firebase (Auth + Firestore), i18next, Sentry, SQLite",
     },
     {
       title: "Frontend web3 engineer",
