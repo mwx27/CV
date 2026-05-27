@@ -55,6 +55,7 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
   ]);
   const [sessionId] = useState(() => crypto.randomUUID());
   const scrollRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -62,6 +63,15 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
       behavior: "smooth",
     });
   }, [messages, loading, open]);
+
+  // Auto-grow the textarea up to its CSS max-height (then it scrolls).
+  // Runs on every input change, including the reset to "" after send.
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [input]);
 
   async function send() {
     const text = input.trim();
@@ -165,12 +175,13 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
           <div className="border-t border-divider p-3">
             <div className="flex items-end gap-2">
               <textarea
+                ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
                 placeholder={t.placeholder}
                 rows={1}
-                className="max-h-28 flex-1 resize-none rounded-xl border border-divider bg-background px-3 py-2 text-sm outline-none focus:border-muted"
+                className="max-h-28 flex-1 resize-none overflow-y-auto rounded-xl border border-divider bg-background px-3 py-2 text-sm outline-none focus:border-muted"
               />
               <button
                 type="button"
