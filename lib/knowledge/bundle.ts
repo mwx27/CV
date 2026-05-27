@@ -178,7 +178,7 @@ interface InventoryFile {
 }
 
 async function loadInventories(): Promise<InventoryFile[]> {
-  const dir = path.join(process.cwd(), "content", "data-inventories");
+  const dir = path.join(process.cwd(), "content", "data-inventories-public");
   try {
     const files = await readdir(dir);
     const mdFiles = files.filter((f) => f.endsWith(".md")).sort();

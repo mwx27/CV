@@ -44,3 +44,7 @@ next-env.d.ts
 # private CV construction notes (per-project inventories of bullet candidates,
 # senior/baseline categorization, internal evaluations) — kept local only
 /content/data-inventories/
+
+# public-safe curated inventories fed to the CV chat bot — kept local,
+# pasted into n8n by hand (not needed in the repo / prod build)
+/content/data-inventories-public/
