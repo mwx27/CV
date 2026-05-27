@@ -48,3 +48,7 @@ next-env.d.ts
 # public-safe curated inventories fed to the CV chat bot — kept local,
 # pasted into n8n by hand (not needed in the repo / prod build)
 /content/data-inventories-public/
+
+# n8n workflow exports (ask-cv etc.) — kept local; the JSON embeds the inline
+# knowledge bundle (curated inventories) and is a deployment artifact, not source
+/n8n/
