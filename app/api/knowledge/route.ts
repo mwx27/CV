@@ -3,17 +3,9 @@ import { buildKnowledgeBundle } from "@/lib/knowledge/bundle";
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
-  const expected = process.env.KNOWLEDGE_BUNDLE_TOKEN;
-  if (!expected) {
-    return new Response("KNOWLEDGE_BUNDLE_TOKEN not configured", {
-      status: 500,
-    });
-  }
-
-  const auth = request.headers.get("authorization") ?? "";
-  const provided = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-  if (provided !== expected) {
-    return new Response("Unauthorized", { status: 401 });
+  // Dev-only: local bundle generator. In prod the bundle lives in n8n, never served here.
+  if (process.env.NODE_ENV === "production") {
+    return new Response("Not found", { status: 404 });
   }
 
   const url = new URL(request.url);
