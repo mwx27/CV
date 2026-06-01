@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { getCv } from "@/content";
 import { routing, type AppLocale } from "@/i18n/routing";
-import { ChatWidget } from "@/features/chat/ChatWidget";
-import { CVPage } from "@/features/cv-page/CVPage";
+import { ChatWidget, CVPage } from "@/features";
 
 function isValidLocale(value: string): value is AppLocale {
   return (routing.locales as readonly string[]).includes(value);
