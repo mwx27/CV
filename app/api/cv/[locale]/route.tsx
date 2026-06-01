@@ -1,6 +1,6 @@
 import { renderToBuffer } from "@react-pdf/renderer";
 import { notFound } from "next/navigation";
-import { CVDocument } from "@/components/pdf/CVDocument";
+import { CVDocument } from "@/features/cv-pdf/CVDocument";
 import { getCv } from "@/content";
 import { routing, type AppLocale } from "@/i18n/routing";
 
