@@ -19,7 +19,7 @@ export function ChatHeader({
         type="button"
         onClick={onClose}
         aria-label={closeLabel}
-        className="-mr-1 rounded-full p-1 text-muted hover:bg-divider/60 hover:text-foreground transition-colors"
+        className="-mr-1 cursor-pointer rounded-full p-1 text-muted hover:bg-divider/60 hover:text-foreground transition-colors"
       >
         <svg
           viewBox="0 0 24 24"

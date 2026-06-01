@@ -51,7 +51,7 @@ export function ChatInput({
           type="button"
           onClick={onSend}
           disabled={disabled || !value.trim()}
-          className="rounded-xl bg-accent px-3 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-accent/90 disabled:opacity-40"
+          className="rounded-xl bg-accent px-3 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors enabled:cursor-pointer hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {sendLabel}
         </button>

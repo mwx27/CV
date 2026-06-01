@@ -26,7 +26,7 @@ export function LanguageToggle({ current }: { current: AppLocale }) {
             }}
             className={
               "px-3 py-1.5 uppercase transition-colors " +
-              (active ? "bg-accent text-white" : "text-foreground hover:bg-divider/60") +
+              (active ? "bg-accent text-white" : "cursor-pointer text-foreground hover:bg-divider/60") +
               (isPending ? " opacity-60" : "")
             }
             aria-pressed={active}

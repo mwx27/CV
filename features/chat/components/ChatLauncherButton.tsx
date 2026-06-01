@@ -14,7 +14,7 @@ export function ChatLauncherButton({
       type="button"
       onClick={onToggle}
       aria-label={open ? closeLabel : openLabel}
-      className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-transform hover:scale-105"
+      className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-accent text-white shadow-lg transition-transform hover:scale-105"
     >
       <svg
         viewBox="0 0 24 24"
