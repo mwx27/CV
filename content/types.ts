@@ -85,4 +85,6 @@ export interface CVData {
   skills: CVSkills;
   hobbies: string;
   gdprNotice: string;
+  /** Localized "last updated" line, injected by getCv() — not authored per locale. */
+  lastUpdated?: string;
 }

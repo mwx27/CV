@@ -83,6 +83,7 @@ const s = StyleSheet.create({
   skillLabel: { fontSize: 9, fontWeight: 700 },
   skillValue: { fontSize: 9 },
   hobbies: { fontSize: 9 },
+  lastUpdatedTop: { position: "absolute", top: 12, right: 30, fontSize: 8, color: MUTED },
   gdpr: {
     position: "absolute",
     bottom: 18,
@@ -238,6 +239,9 @@ export function CVDocument({ data, origin }: { data: CVData; origin: string }) {
   return (
     <Document title={`${data.name.first} ${data.name.last} — CV`} author={`${data.name.first} ${data.name.last}`}>
       <Page size="A4" style={s.page}>
+        {data.lastUpdated ? (
+          <Text style={s.lastUpdatedTop}>{data.lastUpdated}</Text>
+        ) : null}
         <View style={s.headerRow}>
           <Image src={photo} style={s.photo} />
           <View style={s.headerMain}>

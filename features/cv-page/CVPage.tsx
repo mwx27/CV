@@ -20,9 +20,14 @@ export function CVPage({
 }) {
   return (
     <main className="mx-auto max-w-[920px] px-5 sm:px-10 py-8 sm:py-12">
-      <div className="no-print mb-6 flex items-center justify-end gap-3">
-        <DownloadButton locale={locale} label={data.labels.downloadPdf} />
-        <LanguageToggle current={locale} />
+      <div className="no-print mb-6">
+        <div className="flex items-center justify-end gap-3">
+          <DownloadButton locale={locale} label={data.labels.downloadPdf} />
+          <LanguageToggle current={locale} />
+        </div>
+        {data.lastUpdated && (
+          <p className="mt-2 text-right text-xs text-muted">{data.lastUpdated}</p>
+        )}
       </div>
 
       <Header data={data} />
