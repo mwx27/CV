@@ -22,7 +22,7 @@ export async function GET(
   const url = new URL(request.url);
   const origin = url.origin;
 
-  const buffer = await renderToBuffer(<CVDocument data={data} origin={origin} />);
+  const buffer = await renderToBuffer(<CVDocument data={data} origin={origin} locale={locale} />);
 
   const filename = `Maciej-Wojda-CV-${locale}.pdf`;
   return new Response(new Uint8Array(buffer), {

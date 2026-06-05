@@ -1,6 +1,17 @@
 import { Document, Page, Text, View, StyleSheet, Image, Link, Font, Svg, Path, Rect } from "@react-pdf/renderer";
 import type { CVData, CVRole, CVSubRole, ContactIcon } from "@/content/types";
+import type { AppLocale } from "@/i18n/routing";
 import { parseInline } from "@/content/inline";
+
+// Shown as the online-version link text. Hardcoded (not derived from `origin`)
+// so the PDF reads "maciejwojda.cv" even when generated locally — the link
+// itself uses `origin` so it still resolves in dev.
+const SITE_DOMAIN = "maciejwojda.cv";
+
+const ONLINE_LINK_LABEL: Record<AppLocale, string> = {
+  en: "Visit",
+  pl: "Odwiedź",
+};
 
 let fontsRegistered = false;
 function ensureFontsRegistered(origin: string) {
@@ -83,7 +94,12 @@ const s = StyleSheet.create({
   skillLabel: { fontSize: 9, fontWeight: 700 },
   skillValue: { fontSize: 9 },
   hobbies: { fontSize: 9 },
-  lastUpdatedTop: { position: "absolute", top: 12, right: 30, fontSize: 8, color: MUTED },
+  topRight: { position: "absolute", top: 12, right: 30, alignItems: "flex-end" },
+  lastUpdatedText: { fontSize: 8, color: MUTED },
+  onlineLinkRow: { marginTop: 3, flexDirection: "row", alignItems: "center" },
+  onlineLinkLabel: { fontSize: 8, color: MUTED, fontWeight: 400 },
+  onlineLinkUrl: { flexDirection: "row", alignItems: "center" },
+  onlineLinkUrlText: { fontSize: 8, color: AI, fontWeight: 400, letterSpacing: 0.2 },
   gdpr: {
     position: "absolute",
     bottom: 18,
@@ -101,6 +117,15 @@ function ChipIcon({ size = 9 }: { size?: number }) {
       <Rect x="4" y="4" width="16" height="16" rx="2" stroke={AI} strokeWidth="2" fill="none" />
       <Rect x="9" y="9" width="6" height="6" stroke={AI} strokeWidth="2" fill="none" />
       <Path d="M15 2v2 M15 20v2 M2 15h2 M2 9h2 M20 15h2 M20 9h2 M9 2v2 M9 20v2" stroke={AI} strokeWidth="2" fill="none" />
+    </Svg>
+  );
+}
+
+function ExternalLinkIcon({ size = 7 }: { size?: number }) {
+  return (
+    <Svg viewBox="0 0 24 24" width={size} height={size} style={{ marginLeft: 2 }}>
+      <Path d="M14 4h6v6 M20 4l-9 9" stroke={AI} strokeWidth="2.2" fill="none" />
+      <Path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke={AI} strokeWidth="2.2" fill="none" />
     </Svg>
   );
 }
@@ -233,15 +258,32 @@ function RoleView({
   );
 }
 
-export function CVDocument({ data, origin }: { data: CVData; origin: string }) {
+export function CVDocument({
+  data,
+  origin,
+  locale,
+}: {
+  data: CVData;
+  origin: string;
+  locale: AppLocale;
+}) {
   ensureFontsRegistered(origin);
   const photo = `${origin}${data.photo}`;
   return (
     <Document title={`${data.name.first} ${data.name.last} — CV`} author={`${data.name.first} ${data.name.last}`}>
       <Page size="A4" style={s.page}>
-        {data.lastUpdated ? (
-          <Text style={s.lastUpdatedTop}>{data.lastUpdated}</Text>
-        ) : null}
+        <View style={s.topRight}>
+          {data.lastUpdated ? (
+            <Text style={s.lastUpdatedText}>{data.lastUpdated}</Text>
+          ) : null}
+          <View style={s.onlineLinkRow}>
+            <Text style={s.onlineLinkLabel}>{ONLINE_LINK_LABEL[locale]} </Text>
+            <Link src={origin} style={s.onlineLinkUrl}>
+              <Text style={s.onlineLinkUrlText}>{SITE_DOMAIN}</Text>
+              <ExternalLinkIcon size={7} />
+            </Link>
+          </View>
+        </View>
         <View style={s.headerRow}>
           <Image src={photo} style={s.photo} />
           <View style={s.headerMain}>
