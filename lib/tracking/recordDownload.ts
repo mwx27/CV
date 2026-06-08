@@ -26,11 +26,13 @@ export async function recordDownload(
   request: Request,
   locale: AppLocale,
   downloadId: string,
+  company: string | null = null,
 ): Promise<void> {
   const payload = {
     downloadId,
     ts: new Date().toISOString(),
     locale,
+    company,
     referer: request.headers.get("referer"),
     country: request.headers.get("x-vercel-ip-country"),
     region: request.headers.get("x-vercel-ip-country-region"),
