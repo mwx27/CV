@@ -29,6 +29,17 @@ export function CVDocument({
 }) {
   ensureFontsRegistered(origin);
   const photo = `${origin}${data.photo}`;
+
+  // The online-version link routes through /r/<downloadId> instead of the bare
+  // site: that redirect drops a hand-off cookie and lands on a clean root, so a
+  // recruiter opening the CV can be traced back to this download (the open is
+  // fired client-side from the landing page). `?l=<locale>` carries the PDF's
+  // language so the /r route can pin it and the landing page opens in the same
+  // language. Without a downloadId (link generated outside the tracked download
+  // flow) fall back to the bare site — nothing to trace.
+  const onlineHref = downloadId
+    ? `${origin}/r/${downloadId}?l=${locale}`
+    : origin;
   return (
     <Document
       title={`${data.name.first} ${data.name.last} — CV`}
@@ -42,7 +53,7 @@ export function CVDocument({
           ) : null}
           <View style={s.onlineLinkRow}>
             <Text style={s.onlineLinkLabel}>{ONLINE_LINK_LABEL[locale]} </Text>
-            <Link src={origin} style={s.onlineLinkUrl}>
+            <Link src={onlineHref} style={s.onlineLinkUrl}>
               <Text style={s.onlineLinkUrlText}>{SITE_DOMAIN}</Text>
               <ExternalLinkIcon size={7} />
             </Link>
