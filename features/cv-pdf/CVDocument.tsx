@@ -20,15 +20,21 @@ export function CVDocument({
   data,
   origin,
   locale,
+  downloadId,
 }: {
   data: CVData;
   origin: string;
   locale: AppLocale;
+  downloadId?: string;
 }) {
   ensureFontsRegistered(origin);
   const photo = `${origin}${data.photo}`;
   return (
-    <Document title={`${data.name.first} ${data.name.last} — CV`} author={`${data.name.first} ${data.name.last}`}>
+    <Document
+      title={`${data.name.first} ${data.name.last} — CV`}
+      author={`${data.name.first} ${data.name.last}`}
+      keywords={downloadId ? `dl:${downloadId}` : undefined}
+    >
       <Page size="A4" style={s.page}>
         <View style={s.topRight}>
           {data.lastUpdated ? (
