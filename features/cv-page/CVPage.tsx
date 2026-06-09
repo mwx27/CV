@@ -7,7 +7,7 @@ import {
   ExperienceEntry,
   Header,
   LanguageToggle,
-  SectionTitle,
+  MainSection,
   SkillsBlock,
 } from "./components";
 
@@ -18,6 +18,12 @@ export function CVPage({
   data: CVData;
   locale: AppLocale;
 }) {
+  const experienceSections = [
+    { title: data.sections.aiItExperience, roles: data.aiItExperience },
+    { title: data.sections.itExperience, roles: data.itExperience },
+    { title: data.sections.engineeringExperience, roles: data.engineeringExperience },
+  ];
+
   return (
     <main className="mx-auto max-w-[920px] px-5 sm:px-10 py-8 sm:py-12">
       <div className="no-print mb-6">
@@ -33,53 +39,31 @@ export function CVPage({
       <Header data={data} />
       <ContactBar data={data} />
 
-      <SectionTitle>{data.sections.aiItExperience}</SectionTitle>
-      <section>
-        {data.aiItExperience.map((role, i) => (
-          <ExperienceEntry
-            key={i}
-            role={role}
-            techStackLabel={data.labels.techStack}
-            statusLabel={data.labels.status}
-            aiToolLabel={data.labels.aiTool}
-          />
-        ))}
-      </section>
+      {experienceSections.map((s) => (
+        <MainSection key={s.title} title={s.title}>
+          {s.roles.map((role, i) => (
+            <ExperienceEntry
+              key={i}
+              role={role}
+              techStackLabel={data.labels.techStack}
+              statusLabel={data.labels.status}
+              aiToolLabel={data.labels.aiTool}
+            />
+          ))}
+        </MainSection>
+      ))}
 
-      <SectionTitle>{data.sections.itExperience}</SectionTitle>
-      <section>
-        {data.itExperience.map((role, i) => (
-          <ExperienceEntry
-            key={i}
-            role={role}
-            techStackLabel={data.labels.techStack}
-            statusLabel={data.labels.status}
-            aiToolLabel={data.labels.aiTool}
-          />
-        ))}
-      </section>
+      <MainSection title={data.sections.education}>
+        <EducationBlock data={data} />
+      </MainSection>
 
-      <SectionTitle>{data.sections.engineeringExperience}</SectionTitle>
-      <section>
-        {data.engineeringExperience.map((role, i) => (
-          <ExperienceEntry
-            key={i}
-            role={role}
-            techStackLabel={data.labels.techStack}
-            statusLabel={data.labels.status}
-            aiToolLabel={data.labels.aiTool}
-          />
-        ))}
-      </section>
+      <MainSection title={data.sections.skills}>
+        <SkillsBlock data={data} />
+      </MainSection>
 
-      <SectionTitle>{data.sections.education}</SectionTitle>
-      <EducationBlock data={data} />
-
-      <SectionTitle>{data.sections.skills}</SectionTitle>
-      <SkillsBlock data={data} />
-
-      <SectionTitle>{data.sections.hobby}</SectionTitle>
-      <p className="text-sm">{data.hobbies}</p>
+      <MainSection title={data.sections.hobby}>
+        <p className="text-sm">{data.hobbies}</p>
+      </MainSection>
 
       <footer className="mt-10 text-[10px] leading-snug text-muted">
         {data.gdprNotice}

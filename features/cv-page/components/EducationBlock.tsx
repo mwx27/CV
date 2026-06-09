@@ -19,7 +19,7 @@ function EducationItem({ entry }: { entry: CVEducationEntry }) {
 
 export function EducationBlock({ data }: { data: CVData }) {
   return (
-    <section>
+    <>
       {data.education.map((e) => (
         <EducationItem key={e.degree + e.school} entry={e} />
       ))}
@@ -47,6 +47,6 @@ export function EducationBlock({ data }: { data: CVData }) {
           ))}
         </ul>
       </EntryCard>
-    </section>
+    </>
   );
 }
