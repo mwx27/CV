@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { cvEn } from "@/content/cv.en";
 import { cvPl } from "@/content/cv.pl";
+import { skillGroups } from "@/content/skills";
 import type {
   CVData,
   CVEducationEntry,
@@ -109,8 +110,13 @@ function formatCV(cv: CVData, lang: string): string {
   }
 
   lines.push(`\n## ${cv.sections.skills}\n`);
-  lines.push(`- **${cv.labels.skillsTechStack}** ${cv.skills.techStack}`);
-  lines.push(`- **${cv.labels.skillsLegacy}** ${cv.skills.legacy}`);
+  lines.push(`### ${cv.labels.skillsTechStack}\n`);
+  for (const group of skillGroups) {
+    const items = group.items
+      .map((item) => (item.ai ? `${item.name} (AI-assisted)` : item.name))
+      .join(", ");
+    lines.push(`- **${cv.labels.skillGroups[group.key]}:** ${items}`);
+  }
   lines.push(`- **${cv.labels.skillsOther}** ${cv.skills.other}`);
   lines.push(`- **${cv.labels.skillsSoft}** ${cv.skills.soft}`);
   lines.push(`- **${cv.labels.skillsLanguages}** ${cv.skills.languages}`);

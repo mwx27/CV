@@ -16,7 +16,7 @@ export const chatStrings: Record<AppLocale, ChatStrings> = {
     title: "Ask about my CV",
     subtitle: "AI assistant — answers from Maciej's CV",
     greeting:
-      "Hi! Ask me anything about Maciej's experience, projects or skills.",
+      "Hi! Who do I have the pleasure of talking to? Ask me about Maciej's experience, projects or skills.",
     placeholder: "Ask a question…",
     send: "Send",
     error: "Something went wrong. Please try again.",
@@ -27,7 +27,7 @@ export const chatStrings: Record<AppLocale, ChatStrings> = {
     title: "Zapytaj o moje CV",
     subtitle: "Asystent AI — odpowiada na podstawie CV Macieja",
     greeting:
-      "Cześć! Zapytaj mnie o doświadczenie, projekty albo umiejętności Macieja.",
+      "Cześć! Z kim mam przyjemność? Zapytaj mnie o doświadczenie, projekty albo umiejętności Macieja. Zostaw mejla, a wyślę Ci podsumowanie naszej rozmowy.",
     placeholder: "Zadaj pytanie…",
     send: "Wyślij",
     error: "Coś poszło nie tak. Spróbuj ponownie.",

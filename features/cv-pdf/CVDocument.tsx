@@ -2,7 +2,8 @@ import { Document, Page, Text, View, Image, Link } from "@react-pdf/renderer";
 import type { CVData } from "@/content/types";
 import type { AppLocale } from "@/i18n/routing";
 import { parseInline } from "@/content/inline";
-import { s } from "./styles";
+import { skillGroups } from "@/content/skills";
+import { s, skillItemStyle, AI, FG, FG_FAINT } from "./styles";
 import { ensureFontsRegistered } from "./fonts";
 import { ExperienceSection, PdfContactIcon, ExternalLinkIcon } from "./components";
 
@@ -127,25 +128,41 @@ export function CVDocument({
         </View>
 
         <Text style={s.sectionTitle}>{data.sections.skills}</Text>
-        <View style={s.skillRow}>
-          <Text style={s.skillLabel}>{data.labels.skillsTechStack}</Text>
-          <Text style={s.skillValue}>{data.skills.techStack}</Text>
+        <View style={s.entry}>
+          <Text style={s.roleTitle}>{data.labels.skillsTechStack}</Text>
+          <Text style={s.skillLegend}>
+            <Text style={{ fontWeight: 700 }}>{data.labels.skillsLegendLabel}: </Text>
+            <Text style={{ color: FG, fontWeight: 600 }}>{data.labels.skillsLegendStrong}</Text>
+            {" → "}
+            <Text style={{ color: FG_FAINT }}>{data.labels.skillsLegendFaint}</Text>
+            {"   ·   "}
+            <Text style={{ color: AI }}>{data.labels.skillsLegendAgentic}</Text>
+          </Text>
+          {skillGroups.map((group) => (
+            <View key={group.key} style={s.skillGroupRow}>
+              <Text style={s.skillValue}>
+                <Text style={s.skillGroupLabel}>{data.labels.skillGroups[group.key]}  </Text>
+                {group.items.map((item, i) => (
+                  <Text key={item.name} style={skillItemStyle(item)}>
+                    {item.name}
+                    {i < group.items.length - 1 ? ", " : ""}
+                  </Text>
+                ))}
+              </Text>
+            </View>
+          ))}
         </View>
-        <View style={s.skillRow}>
-          <Text style={s.skillLabel}>{data.labels.skillsLegacy}</Text>
-          <Text style={s.skillValue}>{data.skills.legacy}</Text>
+        <View style={s.entry}>
+          <Text style={s.roleTitle}>{data.labels.skillsOther}</Text>
+          <Text style={[s.skillValue, { marginLeft: 10 }]}>{data.skills.other}</Text>
         </View>
-        <View style={s.skillRow}>
-          <Text style={s.skillLabel}>{data.labels.skillsOther}</Text>
-          <Text style={s.skillValue}>{data.skills.other}</Text>
+        <View style={s.entry}>
+          <Text style={s.roleTitle}>{data.labels.skillsSoft}</Text>
+          <Text style={[s.skillValue, { marginLeft: 10 }]}>{data.skills.soft}</Text>
         </View>
-        <View style={s.skillRow}>
-          <Text style={s.skillLabel}>{data.labels.skillsSoft}</Text>
-          <Text style={s.skillValue}>{data.skills.soft}</Text>
-        </View>
-        <View style={s.skillRow}>
-          <Text style={s.skillLabel}>{data.labels.skillsLanguages}</Text>
-          <Text style={s.skillValue}>{data.skills.languages}</Text>
+        <View style={[s.entry, s.entryLast]}>
+          <Text style={s.roleTitle}>{data.labels.skillsLanguages}</Text>
+          <Text style={[s.skillValue, { marginLeft: 10 }]}>{data.skills.languages}</Text>
         </View>
 
         <Text style={s.sectionTitle}>{data.sections.hobby}</Text>

@@ -7,7 +7,7 @@ export const cvEn: CVData = {
     "With **problems solving** approach, not afraid of challenges.",
     "**Proactive**, highly involved and motivated. Creative, visionary.",
     "Enthusiast of **clean code** and modern technologies.",
-    "Participated in over **30** IT projects from various industries.",
+    "Participated in over **40** IT projects from various industries.",
   ],
   photo: "/photo.png",
   contact: [
@@ -28,11 +28,23 @@ export const cvEn: CVData = {
     techStack: "Tech stack:",
     status: "Status:",
     aiTool: "AI tool:",
-    skillsTechStack: "Tech stack:",
-    skillsLegacy: "Used long time ago:",
-    skillsOther: "Other dev skills & knowledge:",
-    skillsSoft: "Soft skills:",
-    skillsLanguages: "Foreign Languages:",
+    skillsTechStack: "Tech stack",
+    skillsLegendLabel: "Legend",
+    skillsLegendStrong: "strongest",
+    skillsLegendFaint: "used less",
+    skillsLegendAgentic: "picked up with AI agents",
+    skillGroups: {
+      languages: "Languages",
+      web: "Frontend",
+      mobile: "Mobile",
+      blockchain: "Blockchain",
+      backend: "Backend / Data",
+      cloud: "Cloud / DevOps / Observability",
+      ai: "AI / agentic",
+    },
+    skillsOther: "Other dev skills & knowledge",
+    skillsSoft: "Soft skills",
+    skillsLanguages: "Foreign languages",
     downloadPdf: "Download PDF",
     others: "Others",
   },
@@ -200,7 +212,7 @@ export const cvEn: CVData = {
     },
     {
       title: "Software engineer",
-      company: "4Dustry sp. z o.o.",
+      company: "4Dustry",
       logo: "/logos/4dustry.png",
       period: "01.2022 – 06.2023",
       bullets: [
@@ -308,14 +320,11 @@ export const cvEn: CVData = {
     ],
   },
   skills: {
-    techStack:
-      "React + Next.js, Vite, JavaScript, TypeScript, Redux, Tailwind CSS, Styled Components, SASS/SCSS, React Native + Expo Go, FireBase, React Query, Jotai, Node.js, Express, NestJS, Axios, Ethers, WAGMI, GraphQL, PostgreSQL, MySQL, SQLite, MongoDB, VBA, VB.NET, C#, Python, PHP, AWS, Google Cloud, NewRelic, Docker, CI/CD.",
-    legacy: "C, C++, Java, Free Pascal",
     other: "Algorithms, data structures, cryptography, patience and resilience for problems and cryptic legacy code",
-    soft: "Responsibility, communication, empathy, tasks prioritizing, analytical thinking, fast adaptation to changing conditions",
+    soft: "Analytical thinking, creativity, fast adaptation to changing conditions, tasks prioritizing, responsibility, decisiveness, communication, empathy",
     languages: "English (advanced C1), Spanish (elementary), German (elementary)",
   },
-  hobbies: "Skiing, skating, diving",
+  hobbies: "Skiing, skating, rollerblading",
   gdprNotice:
     "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).",
 };

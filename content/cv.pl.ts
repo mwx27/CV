@@ -7,7 +7,7 @@ export const cvPl: CVData = {
     "Nastawiony na **rozwiązywanie problemów**, nie boi się wyzwań.",
     "**Proaktywny**, mocno zaangażowany i zmotywowany. Kreatywny, z wizją.",
     "Entuzjasta **czystego kodu** i nowoczesnych technologii.",
-    "Uczestniczył w ponad **30** projektach IT w różnych branżach.",
+    "Uczestniczył w ponad **40** projektach IT w różnych branżach.",
   ],
   photo: "/photo.png",
   contact: [
@@ -28,18 +28,30 @@ export const cvPl: CVData = {
     techStack: "Tech stack:",
     status: "Status:",
     aiTool: "Narzędzie AI:",
-    skillsTechStack: "Tech stack:",
-    skillsLegacy: "Używane dawno temu:",
-    skillsOther: "Inne umiejętności i wiedza:",
-    skillsSoft: "Umiejętności miękkie:",
-    skillsLanguages: "Języki obce:",
+    skillsTechStack: "Tech stack",
+    skillsLegendLabel: "Legenda",
+    skillsLegendStrong: "najmocniejsze",
+    skillsLegendFaint: "mało używane",
+    skillsLegendAgentic: "poznane z agentami AI",
+    skillGroups: {
+      languages: "Języki",
+      web: "Frontend",
+      mobile: "Mobile",
+      blockchain: "Blockchain",
+      backend: "Backend / dane",
+      cloud: "Chmura / DevOps / Observability",
+      ai: "AI / agentyczne",
+    },
+    skillsOther: "Inne umiejętności i wiedza",
+    skillsSoft: "Umiejętności miękkie",
+    skillsLanguages: "Języki obce",
     downloadPdf: "Pobierz PDF",
     others: "Inne",
   },
   aiItExperience: [
     {
-      title: "Mobile app engineer",
-      company: "Software house Xfaang",
+      title: "Inżynier aplikacji mobilnych",
+      company: "Xfaang",
       logo: "/logos/xfaang.png",
       period: "09.2025 – obecnie",
       employmentType: "pełny etat",
@@ -92,7 +104,7 @@ export const cvPl: CVData = {
           status: "w rozwoju",
         },
         {
-          company: "ReCloth (wirtualna szafa z asystentem AI) ",
+          company: "ReCloth (wirtualna szafa z asystentem AI)",
           logo: "/logos/recloth.png",
           period: "10.2025",
           details: ["produkt wewnętrzny Xfaang", "Android"],
@@ -125,7 +137,7 @@ export const cvPl: CVData = {
   ],
   itExperience: [
     {
-      title: "Mobile app engineer",
+      title: "Inżynier aplikacji mobilnych",
       company: "Nexus (aplikacja mobilna na Android/iOS)",
       logo: "/logos/nexus.png",
       period: "12.2024 – 11.2025",
@@ -140,7 +152,7 @@ export const cvPl: CVData = {
       techStack: "React Native + Expo, TypeScript, Redux Toolkit + redux-persist, Sentry, Strapi (BE)",
     },
     {
-      title: "Mobile app engineer",
+      title: "Inżynier aplikacji mobilnych",
       company: "Empatify (aplikacja mobilna na Android/iOS)",
       logo: "/logos/empatify.png",
       period: "06.2023 – 07.2025",
@@ -154,7 +166,7 @@ export const cvPl: CVData = {
       techStack: "React Native + Expo, TypeScript, expo-router, Recoil + recoil-persist, Firebase (Auth + Firestore), i18next, Sentry, SQLite",
     },
     {
-      title: "Frontend web3 engineer",
+      title: "Inżynier frontend web3",
       period: "01.2022 – 12.2024",
       subRoles: [
         {
@@ -199,8 +211,8 @@ export const cvPl: CVData = {
         "React + Next.js, Vite, TypeScript, JavaScript, WAGMI, Ethers, React Query, Jotai, Docker, NestJS, Radix UI, Tailwind CSS, Styled Components, SASS/SCSS",
     },
     {
-      title: "Software engineer",
-      company: "4Dustry sp. z o.o.",
+      title: "Inżynier oprogramowania",
+      company: "4Dustry",
       logo: "/logos/4dustry.png",
       period: "01.2022 – 06.2023",
       bullets: [
@@ -308,14 +320,11 @@ export const cvPl: CVData = {
     ],
   },
   skills: {
-    techStack:
-      "React + Next.js, Vite, JavaScript, TypeScript, Redux, Tailwind CSS, Styled Components, SASS/SCSS, React Native + Expo Go, FireBase, React Query, Jotai, Node.js, Express, NestJS, Axios, Ethers, WAGMI, GraphQL, PostgreSQL, MySQL, SQLite, MongoDB, VBA, VB.NET, C#, Python, PHP, AWS, Google Cloud, NewRelic, Docker, CI/CD.",
-    legacy: "C, C++, Java, Free Pascal",
     other: "Algorytmy, struktury danych, kryptografia, cierpliwość i wytrwałość w mierzeniu się z problemami i zawiłym legacy code",
-    soft: "Odpowiedzialność, komunikacja, empatia, priorytetyzacja zadań, myślenie analityczne, szybka adaptacja do zmieniających się warunków",
+    soft: "Myślenie analityczne, kreatywność, szybka adaptacja do zmieniających się warunków, priorytetyzacja zadań, odpowiedzialność, decyzyjność, komunikacja, empatia",
     languages: "Angielski (zaawansowany C1), hiszpański (podstawowy), niemiecki (podstawowy)",
   },
-  hobbies: "Narciarstwo, jazda na łyżwach, nurkowanie",
+  hobbies: "Narciarstwo, jazda na łyżwach i rolkach",
   gdprNotice:
     "Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym dokumencie do realizacji procesu rekrutacji zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).",
 };

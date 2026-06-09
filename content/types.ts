@@ -1,3 +1,5 @@
+import type { SkillGroupKey } from "./skills";
+
 export type Locale = "en" | "pl";
 
 export type ContactIcon = "phone" | "email" | "github" | "linkedin";
@@ -45,8 +47,6 @@ export interface CVEducationEntry {
 }
 
 export interface CVSkills {
-  techStack: string;
-  legacy: string;
   other: string;
   soft: string;
   languages: string;
@@ -70,7 +70,11 @@ export interface CVData {
     status: string;
     aiTool: string;
     skillsTechStack: string;
-    skillsLegacy: string;
+    skillsLegendLabel: string;
+    skillsLegendStrong: string;
+    skillsLegendFaint: string;
+    skillsLegendAgentic: string;
+    skillGroups: Record<SkillGroupKey, string>;
     skillsOther: string;
     skillsSoft: string;
     skillsLanguages: string;

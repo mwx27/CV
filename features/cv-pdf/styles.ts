@@ -1,9 +1,26 @@
 import { StyleSheet } from "@react-pdf/renderer";
+import type { SkillItem } from "@/content/skills";
 
 export const ACCENT = "#E50914";
 export const MUTED = "#6B6B6B";
 export const DIVIDER = "#E6E6E6";
 export const AI = "#2563EB";
+export const AI_FAINT = "#B8CBF5";
+export const FG = "#1A1A1A";
+export const FG_FAINT = "#B0B0B0";
+
+// Mirrors the web chip encoding: `ai` → blue hue; `level` → weight + lightness
+// (faint is markedly paler than regular so the tiers are visually distinct).
+export function skillItemStyle(item: SkillItem): { color: string; fontWeight: 400 | 600 } {
+  const level = item.level ?? "regular";
+  if (item.ai) {
+    return { color: level === "faint" ? AI_FAINT : AI, fontWeight: level === "strong" ? 600 : 400 };
+  }
+  return {
+    color: level === "faint" ? FG_FAINT : FG,
+    fontWeight: level === "strong" ? 600 : 400,
+  };
+}
 
 export const s = StyleSheet.create({
   page: {
@@ -59,8 +76,9 @@ export const s = StyleSheet.create({
   aiRowLabel: { fontSize: 7.5, color: AI, marginLeft: 3, fontWeight: 700 },
   aiRowText: { fontSize: 7.5, color: AI },
   statusRow: { marginTop: 3, fontSize: 7.5, color: MUTED },
-  skillRow: { marginTop: 2 },
-  skillLabel: { fontSize: 9, fontWeight: 700 },
+  skillLegend: { fontSize: 7, color: MUTED, marginTop: 1 },
+  skillGroupRow: { marginTop: 2, marginLeft: 10 },
+  skillGroupLabel: { fontSize: 7.5, fontWeight: 700, color: MUTED, textTransform: "uppercase", letterSpacing: 0.4 },
   skillValue: { fontSize: 9 },
   hobbies: { fontSize: 9 },
   topRight: { position: "absolute", top: 12, right: 30, alignItems: "flex-end" },
