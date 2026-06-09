@@ -22,8 +22,10 @@ export async function recordDownload(
   };
 
   const webhook = process.env.N8N_DOWNLOAD_WEBHOOK_URL;
-  if (!webhook) {
-    // Local dev / unconfigured: log so the flow is testable without n8n.
+  // Never forward downloads from local dev — only real production traffic
+  // should reach n8n, so dev downloads don't pollute the feed.
+  if (!webhook || process.env.NODE_ENV !== "production") {
+    // Dev / unconfigured: log so the flow stays visible without hitting n8n.
     console.log(`[cv-download] ${JSON.stringify(payload)}`);
     return;
   }

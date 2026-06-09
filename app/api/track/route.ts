@@ -36,8 +36,10 @@ export async function POST(request: Request) {
   };
 
   const webhook = process.env.N8N_OPEN_WEBHOOK_URL;
-  if (!webhook) {
-    // Local dev / unconfigured: log so the flow is testable without n8n.
+  // Never forward opens from local dev — only real production traffic should
+  // reach n8n, so testing the /r link locally doesn't log phantom opens.
+  if (!webhook || process.env.NODE_ENV !== "production") {
+    // Dev / unconfigured: log so the flow stays visible without hitting n8n.
     console.log(`[cv-open] ${JSON.stringify(payload)}`);
     return Response.json({ ok: true });
   }

@@ -49,8 +49,10 @@ export async function POST(request: Request) {
   };
 
   const webhook = process.env.N8N_VISIT_WEBHOOK_URL;
-  if (!webhook) {
-    // Local dev / unconfigured: log so the flow is testable without n8n.
+  // Never forward visits from local dev — only real production traffic should
+  // reach n8n, so a developer reloading localhost doesn't pollute the feed.
+  if (!webhook || process.env.NODE_ENV !== "production") {
+    // Dev / unconfigured: log so the flow stays visible without hitting n8n.
     console.log(`[cv-visit] ${JSON.stringify(payload)}`);
     return Response.json({ ok: true });
   }
