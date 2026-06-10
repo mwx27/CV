@@ -6,15 +6,20 @@ import {
   ChatHeader,
   ChatInput,
   ChatLauncherButton,
+  ChatNudge,
   MessageBubble,
   TypingIndicator,
 } from "./components";
 import { useChat } from "./hooks";
 import { chatStrings } from "./strings";
 
+// How long a visitor sits idle before the nudge bubble appears.
+const NUDGE_DELAY_MS = 4000;
+
 export function ChatWidget({ locale }: { locale: AppLocale }) {
   const t = chatStrings[locale];
   const [open, setOpen] = useState(false);
+  const [nudgeText, setNudgeText] = useState<string | null>(null);
   const { messages, input, setInput, loading, send } = useChat(locale);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -24,6 +29,25 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
       behavior: "smooth",
     });
   }, [messages, loading, open]);
+
+  // Nudge the visitor toward the chat once per session, a few seconds in,
+  // with a random teaser from the pool.
+  useEffect(() => {
+    // Opening the chat retires the nudge for the session — set the flag here
+    // too, not only in the timeout, so opening before the delay elapses doesn't
+    // let a fresh timer get scheduled on close and nudge an already-engaged visitor.
+    if (open) {
+      sessionStorage.setItem("cv-chat-nudge-seen", "1");
+      return;
+    }
+    if (sessionStorage.getItem("cv-chat-nudge-seen")) return;
+    const id = setTimeout(() => {
+      sessionStorage.setItem("cv-chat-nudge-seen", "1");
+      const pool = t.nudges;
+      setNudgeText(pool[Math.floor(Math.random() * pool.length)]);
+    }, NUDGE_DELAY_MS);
+    return () => clearTimeout(id);
+  }, [open, t.nudges]);
 
   return (
     <div className="no-print fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
@@ -56,6 +80,18 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
             sendLabel={t.send}
           />
         </div>
+      )}
+
+      {nudgeText && !open && (
+        <ChatNudge
+          text={nudgeText}
+          dismissLabel={t.nudgeDismiss}
+          onOpen={() => {
+            setNudgeText(null);
+            setOpen(true);
+          }}
+          onDismiss={() => setNudgeText(null)}
+        />
       )}
 
       <ChatLauncherButton
