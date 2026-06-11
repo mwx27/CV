@@ -19,6 +19,8 @@ const NUDGE_DELAY_MS = 4000;
 export function ChatWidget({ locale }: { locale: AppLocale }) {
   const t = chatStrings[locale];
   const [open, setOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
+  const [nudgeShown, setNudgeShown] = useState(false);
   const [nudgeText, setNudgeText] = useState<string | null>(null);
   const { messages, input, setInput, loading, send } = useChat(locale);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -45,6 +47,7 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
       sessionStorage.setItem("cv-chat-nudge-seen", "1");
       const pool = t.nudges;
       setNudgeText(pool[Math.floor(Math.random() * pool.length)]);
+      setNudgeShown(true);
     }, NUDGE_DELAY_MS);
     return () => clearTimeout(id);
   }, [open, t.nudges]);
@@ -96,9 +99,13 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
 
       <ChatLauncherButton
         open={open}
-        onToggle={() => setOpen((o) => !o)}
+        onToggle={() => {
+          setOpen((o) => !o);
+          setHasOpened(true);
+        }}
         openLabel={t.open}
         closeLabel={t.close}
+        electric={nudgeShown && !hasOpened}
       />
     </div>
   );
