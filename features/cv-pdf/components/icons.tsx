@@ -12,11 +12,11 @@ export function ChipIcon({ size = 9 }: { size?: number }) {
   );
 }
 
-export function ExternalLinkIcon({ size = 7 }: { size?: number }) {
+export function ExternalLinkIcon({ size = 7, color = AI }: { size?: number; color?: string }) {
   return (
     <Svg viewBox="0 0 24 24" width={size} height={size} style={{ marginLeft: 2 }}>
-      <Path d="M14 4h6v6 M20 4l-9 9" stroke={AI} strokeWidth="2.2" fill="none" />
-      <Path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke={AI} strokeWidth="2.2" fill="none" />
+      <Path d="M14 4h6v6 M20 4l-9 9" stroke={color} strokeWidth="3.2" fill="none" />
+      <Path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke={color} strokeWidth="3.2" fill="none" />
     </Svg>
   );
 }

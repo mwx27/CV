@@ -5,17 +5,7 @@ import { parseInline } from "@/content/inline";
 import { skillGroups } from "@/content/skills";
 import { s, skillItemStyle, AI, FG, FG_FAINT } from "./styles";
 import { ensureFontsRegistered } from "./fonts";
-import { ExperienceSection, PdfContactIcon, ExternalLinkIcon } from "./components";
-
-// Shown as the online-version link text. Hardcoded (not derived from `origin`)
-// so the PDF reads "maciejwojda.cv" even when generated locally — the link
-// itself uses `origin` so it still resolves in dev.
-const SITE_DOMAIN = "maciejwojda.cv";
-
-const ONLINE_LINK_LABEL: Record<AppLocale, string> = {
-  en: "Visit",
-  pl: "Odwiedź",
-};
+import { ExperienceSection, PdfContactIcon, ChatCta } from "./components";
 
 export function CVDocument({
   data,
@@ -52,13 +42,7 @@ export function CVDocument({
           {data.lastUpdated ? (
             <Text style={s.lastUpdatedText}>{data.lastUpdated}</Text>
           ) : null}
-          <View style={s.onlineLinkRow}>
-            <Text style={s.onlineLinkLabel}>{ONLINE_LINK_LABEL[locale]} </Text>
-            <Link src={onlineHref} style={s.onlineLinkUrl}>
-              <Text style={s.onlineLinkUrlText}>{SITE_DOMAIN}</Text>
-              <ExternalLinkIcon size={7} />
-            </Link>
-          </View>
+          <ChatCta href={onlineHref} locale={locale} />
         </View>
         <View style={s.headerRow}>
           <Image src={photo} style={s.photo} />
