@@ -3,11 +3,15 @@ import type { AppLocale } from "@/i18n/routing";
 import type { ChatMessage } from "../components";
 import { chatStrings } from "../strings";
 
-export function useChat(locale: AppLocale) {
+export function useChat(locale: AppLocale, teaser: string) {
   const t = chatStrings[locale];
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  // Open with the session's teaser above the greeting, so the cheeky nudge copy
+  // lands in the transcript for everyone who opens the chat — and matches whatever
+  // they read in the launcher bubble (the caller picks it once and passes it in).
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
+    { role: "assistant", content: teaser },
     { role: "assistant", content: t.greeting },
   ]);
   const [sessionId] = useState(() => crypto.randomUUID());

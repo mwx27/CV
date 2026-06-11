@@ -7,22 +7,23 @@ import {
   ChatInput,
   ChatLauncherButton,
   ChatNudge,
+  ElectricStorm,
   MessageBubble,
   TypingIndicator,
 } from "./components";
-import { useChat } from "./hooks";
+import { useChat, useNudgeStorm } from "./hooks";
 import { chatStrings } from "./strings";
-
-// How long a visitor sits idle before the nudge bubble appears.
-const NUDGE_DELAY_MS = 4000;
 
 export function ChatWidget({ locale }: { locale: AppLocale }) {
   const t = chatStrings[locale];
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
-  const [nudgeShown, setNudgeShown] = useState(false);
-  const [nudgeText, setNudgeText] = useState<string | null>(null);
-  const { messages, input, setInput, loading, send } = useChat(locale);
+  // One teaser per session, shared by the launcher bubble and the chat's opening
+  // line — so whatever a visitor reads in the bubble is what greets them inside.
+  const [teaser] = useState(() => t.nudges[Math.floor(Math.random() * t.nudges.length)]);
+  const { messages, input, setInput, loading, send } = useChat(locale, teaser);
+  const { nudgeText, electric, stormActive, dismissNudge, openFromNudge, completeStorm } =
+    useNudgeStorm({ open, hasOpened, teaser, setOpen, setHasOpened });
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,26 +32,6 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
       behavior: "smooth",
     });
   }, [messages, loading, open]);
-
-  // Nudge the visitor toward the chat once per session, a few seconds in,
-  // with a random teaser from the pool.
-  useEffect(() => {
-    // Opening the chat retires the nudge for the session — set the flag here
-    // too, not only in the timeout, so opening before the delay elapses doesn't
-    // let a fresh timer get scheduled on close and nudge an already-engaged visitor.
-    if (open) {
-      sessionStorage.setItem("cv-chat-nudge-seen", "1");
-      return;
-    }
-    if (sessionStorage.getItem("cv-chat-nudge-seen")) return;
-    const id = setTimeout(() => {
-      sessionStorage.setItem("cv-chat-nudge-seen", "1");
-      const pool = t.nudges;
-      setNudgeText(pool[Math.floor(Math.random() * pool.length)]);
-      setNudgeShown(true);
-    }, NUDGE_DELAY_MS);
-    return () => clearTimeout(id);
-  }, [open, t.nudges]);
 
   return (
     <div className="no-print fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
@@ -89,13 +70,12 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
         <ChatNudge
           text={nudgeText}
           dismissLabel={t.nudgeDismiss}
-          onOpen={() => {
-            setNudgeText(null);
-            setOpen(true);
-          }}
-          onDismiss={() => setNudgeText(null)}
+          onOpen={openFromNudge}
+          onDismiss={dismissNudge}
         />
       )}
+
+      {stormActive && !open && <ElectricStorm onComplete={completeStorm} />}
 
       <ChatLauncherButton
         open={open}
@@ -105,7 +85,7 @@ export function ChatWidget({ locale }: { locale: AppLocale }) {
         }}
         openLabel={t.open}
         closeLabel={t.close}
-        electric={nudgeShown && !hasOpened}
+        electric={electric}
       />
     </div>
   );
