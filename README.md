@@ -1,6 +1,6 @@
 # Maciej Wojda — CV
 
-**Last Updated:** 2026-06-05 16:34 CEST
+**Last Updated:** 2026-06-16 16:00 CEST
 
 The personal CV site of Maciej Wojda — a software engineer who's had a hand in 30+ projects, currently focused on AI-assisted development and iOS.
 
@@ -13,7 +13,7 @@ A bilingual (🇬🇧 English / 🇵🇱 Polish) CV site built with Next.js. One
 
 - **Bilingual** — English at `/`, Polish at `/pl`, switchable in the UI. The PDF follows the chosen language.
 - **Downloadable PDF** — a print-ready CV generated on demand, straight from the live content.
-- **Ask my CV** — a floating chat widget where recruiters can dig into my projects, skills, and background. Powered by Claude (via n8n), it knows more than the printed CV shows: the CV is kept short and selective, while the chat also draws on detailed per-project notes kept off the page.
+- **Ask my CV** — a floating chat widget where recruiters can dig into my projects, skills, and background. It doesn't wait to be found: after a few idle seconds it nudges the visitor with a teaser and an animated flourish, then opens itself. Powered by Claude (via n8n), it knows more than the printed CV shows: the CV is kept short and selective, while the chat also draws on detailed per-project notes kept off the page.
 
 ## Tech stack
 
