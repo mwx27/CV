@@ -11,7 +11,7 @@ export const cvByLocale: Record<Locale, CVData> = {
  * Bump this when you meaningfully revise the CV. Single source of truth for the
  * "last updated" stamp shown in both locales and in the PDF. Format: YYYY-MM-DD.
  */
-const LAST_UPDATED = "2026-06-09";
+const LAST_UPDATED = "2026-06-17";
 
 const lastUpdatedLabel: Record<Locale, string> = {
   en: "Last updated",

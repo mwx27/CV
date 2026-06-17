@@ -17,9 +17,9 @@ export const cvEn: CVData = {
     { label: "linkedin.com/in/maciej-wojda", href: "https://linkedin.com/in/maciej-wojda", icon: "linkedin" },
   ],
   sections: {
-    aiItExperience: "AI-assisted IT experience",
-    itExperience: "Earlier IT experience",
-    engineeringExperience: "Engineering Experience",
+    aiItExperience: "AI-Native Software Engineering",
+    itExperience: "Software Engineering",
+    engineeringExperience: "Earlier Engineering Experience",
     education: "Education",
     skills: "Skills Summary",
     hobby: "No-Code Hobby",

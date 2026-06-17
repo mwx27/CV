@@ -17,11 +17,11 @@ export const cvPl: CVData = {
     { label: "linkedin.com/in/maciej-wojda", href: "https://linkedin.com/in/maciej-wojda", icon: "linkedin" },
   ],
   sections: {
-    aiItExperience: "Doświadczenie IT wspierane AI",
-    itExperience: "Wcześniejsze doświadczenie IT",
-    engineeringExperience: "Doświadczenie inżynierskie",
+    aiItExperience: "Inżynieria Oprogramowania oparta na AI",
+    itExperience: "Inżynieria Oprogramowania",
+    engineeringExperience: "Wcześniejsze Doświadczenie Inżynierskie",
     education: "Wykształcenie",
-    skills: "Umiejętności",
+    skills: "Podsumowanie Umiejętności",
     hobby: "Hobby (poza kodem)",
   },
   labels: {
