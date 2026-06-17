@@ -80,7 +80,7 @@ export function CVDocument({
           ))}
         </View>
 
-        <ExperienceSection title={data.sections.aiItExperience} roles={data.aiItExperience} labels={data.labels} origin={origin} />
+        <ExperienceSection title={data.sections.aiItExperience} intro={data.aiIntro} roles={data.aiItExperience} labels={data.labels} origin={origin} />
       </Page>
 
       <Page size="A4" style={s.page}>

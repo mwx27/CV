@@ -81,6 +81,8 @@ export interface CVData {
     downloadPdf: string;
     others: string;
   };
+  /** Optional lead-in shown under the first (AI) experience section heading. */
+  aiIntro?: string;
   aiItExperience: CVRole[];
   itExperience: CVRole[];
   engineeringExperience: CVRole[];

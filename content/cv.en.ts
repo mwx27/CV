@@ -48,6 +48,8 @@ export const cvEn: CVData = {
     downloadPdf: "Download PDF",
     others: "Others",
   },
+  aiIntro: 
+    "I create products fast by directing AI agents, preserving high quality — maintainable by a human, never addicted to AI, token-efficient by design.",
   aiItExperience: [
     {
       title: "Mobile app engineer",

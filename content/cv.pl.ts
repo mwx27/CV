@@ -48,6 +48,8 @@ export const cvPl: CVData = {
     downloadPdf: "Pobierz PDF",
     others: "Inne",
   },
+  aiIntro:
+    "Kierując agentami AI, szybko tworzę wysokiej jakości produkty — kod utrzymywalny przez człowieka, nieuzależniony od AI, oszczędny w tokenach.",
   aiItExperience: [
     {
       title: "Inżynier aplikacji mobilnych",

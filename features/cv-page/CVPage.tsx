@@ -18,8 +18,12 @@ export function CVPage({
   data: CVData;
   locale: AppLocale;
 }) {
-  const experienceSections = [
-    { title: data.sections.aiItExperience, roles: data.aiItExperience },
+  const experienceSections: {
+    title: string;
+    roles: CVData["aiItExperience"];
+    intro?: string;
+  }[] = [
+    { title: data.sections.aiItExperience, roles: data.aiItExperience, intro: data.aiIntro },
     { title: data.sections.itExperience, roles: data.itExperience },
     { title: data.sections.engineeringExperience, roles: data.engineeringExperience },
   ];
@@ -40,7 +44,7 @@ export function CVPage({
       <ContactBar data={data} />
 
       {experienceSections.map((s) => (
-        <MainSection key={s.title} title={s.title}>
+        <MainSection key={s.title} title={s.title} intro={s.intro}>
           {s.roles.map((role, i) => (
             <ExperienceEntry
               key={i}
